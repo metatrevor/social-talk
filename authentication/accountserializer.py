@@ -14,10 +14,10 @@ class AccountSerializer(serializers.ModelSerializer):
         read_only_fields = ('date_joined', 'updated_at')
 
     def create(self, validated_data):
-        return Account.objects.create_user(**validated_data)
+        return Account.objects.create(email=validated_data.get('email'), username=validated_data.get('username'), password=validated_data.get('password'))
 
     def update(self, instance, validated_data):
-        instance.username = validated_data.get('username' , instance.username)
+        instance.username = validated_data.get('username', instance.username)
 
         instance.save()
 
@@ -30,4 +30,4 @@ class AccountSerializer(serializers.ModelSerializer):
 
             update_session_auth_hash(self.context.get('request'), instance)
 
-            return instance
+        return instance

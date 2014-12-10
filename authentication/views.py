@@ -12,20 +12,19 @@ class AccountViewSet(viewsets.ModelViewSet):
 
     def get_permissions(self):
         if self.request.method in permissions.SAFE_METHODS:
-            return permissions.AllowAny(),
+            return (permissions.AllowAny(),)
+
         if self.request.method == 'POST':
-            return permissions.AllowAny(),
-        return permissions.IsAuthenticated(), IsAccountOwner(),
+            return (permissions.AllowAny(),)
+
+        return (permissions.IsAuthenticated(), IsAccountOwner(),)
 
     def create(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
 
         if serializer.is_valid():
-            account = Account.objects.create_user(**request.DATA)
-            account.set_password(request.DATA.get('password'))
-            account.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-
+            Account.objects.create_user(email=serializer.validated_data.get('email'), username=serializer.validated_data.get('username'), password=serializer.validated_data.get('password'))
+            return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
         return Response({
             'status': 'Bad request',
             'message': 'Account could not be created with received data.'
