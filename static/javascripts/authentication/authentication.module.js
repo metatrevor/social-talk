@@ -12,5 +12,4 @@
 
     angular
         .module('social.authentication.services', ['ngCookies']);
-
 })();

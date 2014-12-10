@@ -1,4 +1,6 @@
 (function () {
+    'use strict';
+
     angular
         .module('social.config')
         .config(config);
@@ -7,11 +9,10 @@
 
     /**
      * @name config
-     * @desc enable HTML5 routing
+     * @desc Enable HTML5 routing
      */
     function config($locationProvider) {
-        $locationProvider.html5mode(true);
+        $locationProvider.html5Mode(true);
         $locationProvider.hashPrefix('!');
     }
-
 })();

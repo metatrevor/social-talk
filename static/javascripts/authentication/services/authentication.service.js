@@ -3,8 +3,7 @@
  * Authentication
  * @namespace social.authentication.services
  */
-
-(function(){
+(function () {
     'use strict';
     angular
         .module('social.authentication.services')
@@ -19,7 +18,7 @@
     function Authentication($cookies, $http) {
         /**
          * @name Authentication
-         * @desc The factory to be returned
+         * @desc The Factory to be returned
          */
 
         var Authentication = {
@@ -31,18 +30,18 @@
         /**
          * @name register
          * @desc Register a new user
-         * @param {string} username
-         * @param {string} password
          * @param {string} email
+         * @param {string} password
+         * @param {string} username
          * @returns {Promise}
          * @memberOf social.authentication.services.Authentication
          */
         function register(email, password, username) {
-            return $http.post('/api/v1/accounts', {
-                username : username,
-                password : password,
-                email : email
-            });
+            return $http.post('/api/v1/accounts/', {
+                username: username,
+                password: password,
+                email: email
+            }).then();
         }
     }
 })();
