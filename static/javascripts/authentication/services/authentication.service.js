@@ -46,7 +46,7 @@
                 username: username,
                 password: password,
                 email: email
-            }).then();
+            }).then(registerSuccessFn, registerErrorFn);
         }
 
         /**
@@ -120,10 +120,27 @@
 
         /**
          * @name loginErrorFn
-         * @desc Log "Login failure"
+         * @desc Log "Login failure" to the console
          */
         function loginErrorFn(data, status, headers, config) {
             console.error('Login failure');
+        }
+
+
+        /**
+         * @name registerSuccessFn
+         * @desc Log the new user in
+         */
+        function registerSuccessFn(data, status, headers, config) {
+            Authentication.login(email, password);
+        }
+
+        /**
+         * @name registerErrorFn
+         * @desc Log "Registration failure" to the console
+         */
+        function registerErrorFn(data, status, headers, config) {
+            console.error('Registration failure!');
         }
     }
 })();
