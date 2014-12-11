@@ -6,7 +6,9 @@
             'social.config',
             'social.routes',
             'social.authentication',
-            'social.layout'
+            'social.layout',
+            'social.posts',
+            'social.utils'
         ]);
 
     angular
