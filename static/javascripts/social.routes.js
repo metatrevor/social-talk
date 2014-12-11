@@ -19,10 +19,18 @@
             controller: 'RegisterController',
             controllerAs: 'vm',
             templateUrl: '/static/templates/authentication/register.html'
-        }).when('/login', {
-            controller: 'LoginController',
+        }).when('/@:username', {
+            controller: 'ProfileController',
             controllerAs: 'vm',
-            templateUrl: '/static/templates/authentication/login.html'
-        }).otherwise('/');
+            templateUrl: '/static/templates/profiles/profile.html'
+        }).when('/@:username/settings', {
+            controller: 'ProfileSettingsController',
+            controllerAs: 'vm',
+            templateUrl: '/static/templates/profiles/settings.html'
+        }).when('/login', {
+                controller: 'LoginController',
+                controllerAs: 'vm',
+                templateUrl: '/static/templates/authentication/login.html'
+            }).otherwise('/');
     }
 })();
