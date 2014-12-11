@@ -1,1 +1,1 @@
-web: gunicorn  social-django-angular.wsgi --log-file -
+web: gunicorn  social-talk.wsgi --log-file -

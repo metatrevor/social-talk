@@ -1,5 +1,5 @@
-$ mkvirtualenv social-django-angular
-$ cd social-django-angular/
+$ mkvirtualenv social-talk
+$ cd social-talk/
 $ pip install -r requirements.txt
 $ npm install -g bower
 $ npm install

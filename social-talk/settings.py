@@ -1,5 +1,5 @@
 """
-Django settings for social-django-angular project.
+Django settings for social-talk project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -53,9 +53,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'social-django-angular.urls'
+ROOT_URLCONF = 'social-talk.urls'
 
-WSGI_APPLICATION = 'social-django-angular.wsgi.application'
+WSGI_APPLICATION = 'social-talk.wsgi.application'
 
 
 # Database
