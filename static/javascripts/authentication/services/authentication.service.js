@@ -22,12 +22,13 @@
          */
 
         var Authentication = {
+            login: login,
+            logout: logout,
             register: register,
-            getAuthenticatedAccount : getAuthenticatedAccount,
-            login : login,
-            isAuthenticated : isAuthenticated,
+            getAuthenticatedAccount: getAuthenticatedAccount,
+            isAuthenticated: isAuthenticated,
             setAuthenticatedAccount: setAuthenticatedAccount,
-            unauthenticated : unauthenticate
+            unauthenticate: unauthenticate
         };
 
         return Authentication;
@@ -47,6 +48,22 @@
                 password: password,
                 email: email
             }).then(registerSuccessFn, registerErrorFn);
+
+            /**
+             * @name registerSuccessFn
+             * @desc Log the new user in
+             */
+            function registerSuccessFn(data, status, headers, config) {
+                Authentication.login(email, password);
+            }
+
+            /**
+             * @name registerErrorFn
+             * @desc Log "Registration failure" to the console
+             */
+            function registerErrorFn(data, status, headers, config) {
+                console.error('Registration failure!');
+            }
         }
 
         /**
@@ -99,6 +116,35 @@
         }
 
         /**
+         * @name logout
+         * @desc Try to log the user out
+         * @returns {Promise}
+         * @memberOf social.authentication.services.Authentication
+         */
+        function logout() {
+          return $http.post('/api/v1/auth/logout/')
+            .then(logoutSuccessFn, logoutErrorFn);
+
+          /**
+           * @name logoutSuccessFn
+           * @desc Unauthenticate and redirect to index with page reload
+           */
+          function logoutSuccessFn(data, status, headers, config) {
+            Authentication.unauthenticate();
+
+            window.location = '/';
+          }
+
+          /**
+           * @name logoutErrorFn
+           * @desc Log "Logout failure!" to the console
+           */
+          function logoutErrorFn(data, status, headers, config) {
+            console.error('Logout failure!');
+          }
+        }
+
+        /**
          * @name unauthenticate
          * @desc Delete the cookie where the user object is stored
          * @returns {undefined}
@@ -126,21 +172,5 @@
             console.error('Login failure');
         }
 
-
-        /**
-         * @name registerSuccessFn
-         * @desc Log the new user in
-         */
-        function registerSuccessFn(data, status, headers, config) {
-            Authentication.login(email, password);
-        }
-
-        /**
-         * @name registerErrorFn
-         * @desc Log "Registration failure" to the console
-         */
-        function registerErrorFn(data, status, headers, config) {
-            console.error('Registration failure!');
-        }
     }
 })();

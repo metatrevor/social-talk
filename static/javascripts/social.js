@@ -5,7 +5,8 @@
         .module('social', [
             'social.config',
             'social.routes',
-            'social.authentication'
+            'social.authentication',
+            'social.layout'
         ]);
 
     angular
