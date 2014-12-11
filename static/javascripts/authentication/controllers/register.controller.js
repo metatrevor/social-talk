@@ -19,6 +19,8 @@
 
         vm.register = register;
 
+        activate();
+
         /**
          * @name register
          * @desc Register a new user
@@ -29,7 +31,7 @@
         }
 
         function activate() {
-            if(Authentication.isAuthenticated()) {
+            if (Authentication.isAuthenticated()) {
                 $location.url('/');
             }
         }

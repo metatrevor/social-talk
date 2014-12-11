@@ -19,7 +19,7 @@
 
         vm.login = login;
 
-
+        activate();
 
         /**
          * @name activate
