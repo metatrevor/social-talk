@@ -1,7 +1,7 @@
 /**
-* Posts
-* @namespace social.posts.services
-*/
+ * Posts
+ * @namespace social.posts.services
+ */
 (function () {
   'use strict';
 
@@ -12,53 +12,54 @@
   Posts.$inject = ['$http'];
 
   /**
-  * @namespace Posts
-  * @returns {Factory}
-  */
+   * @namespace Posts
+   * @returns {Factory}
+   */
   function Posts($http) {
     var Posts = {
       all: all,
-      create: create,
-      get: get
+      get: get,
+      create: create
     };
 
     return Posts;
 
     ////////////////////
-
+    
     /**
-    * @name all
-    * @desc Get all Posts
-    * @returns {Promise}
-    * @memberOf social.posts.services.Posts
-    */
+     * @name all
+     * @desc Get all Posts
+     * @returns {Promise}
+     * @memberOf social.posts.services.Posts
+     */
     function all() {
       return $http.get('/api/v1/posts/');
     }
 
 
     /**
-    * @name create
-    * @desc Create a new Post
-    * @param {string} content
-    * @returns {Promise}
-    * @memberOf social.posts.services.Posts
-    */
+     * @name create
+     * @desc Create a new Post
+     * @param {string} content The content of the new Post
+     * @returns {Promise}
+     * @memberOf social.posts.services.Posts
+     */
     function create(content) {
       return $http.post('/api/v1/posts/', {
         content: content
       });
     }
 
+
     /**
      * @name get
      * @desc Get the Posts of a given user
-     * @param {string} username
+     * @param {string} username The username to get Posts for
      * @returns {Promise}
      * @memberOf social.posts.services.Posts
      */
-    function get(username) {
-      return $http.get('/api/v1/accounts/' + username + '/posts/');
+    function get(id) {
+      return $http.get('/api/v1/accounts/' + id + '/posts/');
     }
   }
 })();
