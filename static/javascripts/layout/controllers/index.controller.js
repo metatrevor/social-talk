@@ -1,60 +1,60 @@
 /**
-* IndexController
-* @namespace social.layout.controllers
-*/
+ * IndexController
+ * @namespace social.layout.controllers
+ */
 (function () {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('social.layout.controllers')
-    .controller('IndexController', IndexController);
+    angular
+        .module('social.layout.controllers')
+        .controller('IndexController', IndexController);
 
-  IndexController.$inject = ['$scope', 'Authentication', 'Posts', 'Snackbar'];
-
-  /**
-  * @namespace IndexController
-  */
-  function IndexController($scope, Authentication, Posts, Snackbar) {
-    var vm = this;
-
-    vm.isAuthenticated = Authentication.isAuthenticated();
-    vm.posts = [];
-
-    activate();
+    IndexController.$inject = ['$scope', 'Authentication', 'Posts', 'Snackbar'];
 
     /**
-    * @name activate
-    * @desc Actions to be performed when this controller is instantiated
-    * @memberOf social.layout.controllers.IndexController
-    */
-    function activate() {
-      Posts.all().then(postsSuccessFn, postsErrorFn);
+     * @namespace IndexController
+     */
+    function IndexController($scope, Authentication, Posts, Snackbar) {
+        var vm = this;
 
-      $scope.$on('post.created', function (event, post) {
-        vm.posts.unshift(post);
-      });
+        vm.isAuthenticated = Authentication.isAuthenticated();
+        vm.posts = [];
 
-      $scope.$on('post.created.error', function () {
-        vm.posts.shift();
-      });
+        activate();
+
+        /**
+         * @name activate
+         * @desc Actions to be performed when this controller is instantiated
+         * @memberOf social.layout.controllers.IndexController
+         */
+        function activate() {
+            Posts.all().then(postsSuccessFn, postsErrorFn);
+
+            $scope.$on('post.created', function (event, post) {
+                vm.posts.unshift(post);
+            });
+
+            $scope.$on('post.created.error', function () {
+                vm.posts.shift();
+            });
 
 
-      /**
-      * @name postsSuccessFn
-      * @desc Update posts array on view
-      */
-      function postsSuccessFn(data, status, headers, config) {
-        vm.posts = data.data;
-      }
+            /**
+             * @name postsSuccessFn
+             * @desc Update posts array on view
+             */
+            function postsSuccessFn(data, status, headers, config) {
+                vm.posts = data.data;
+            }
 
 
-      /**
-      * @name postsErrorFn
-      * @desc Show snackbar with error
-      */
-      function postsErrorFn(data, status, headers, config) {
-        Snackbar.error(data.error);
-      }
+            /**
+             * @name postsErrorFn
+             * @desc Show snackbar with error
+             */
+            function postsErrorFn(data, status, headers, config) {
+                Snackbar.error(data.error);
+            }
+        }
     }
-  }
 })();

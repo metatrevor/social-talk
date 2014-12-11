@@ -75,8 +75,8 @@
          */
         function login(email, password) {
             return $http.post('/api/v1/auth/login/', {
-                email : email,
-                password : password
+                email: email,
+                password: password
             }).then(loginSuccessFn, loginErrorFn);
         }
 
@@ -88,13 +88,13 @@
          */
 
         function getAuthenticatedAccount() {
-            if(!$cookies.authenticatedAccount) {
+            if (!$cookies.authenticatedAccount) {
                 return;
             }
             return JSON.parse($cookies.authenticatedAccount);
         }
 
-       /**
+        /**
          * @name setAuthenticatedUser
          * @desc Stringify the account object and store it in a cookie
          * @param {Object} account
@@ -102,7 +102,7 @@
          * @memberOf social.authentication.services.Authentication
          */
         function setAuthenticatedAccount(account) {
-          $cookies.authenticatedAccount = JSON.stringify(account);
+            $cookies.authenticatedAccount = JSON.stringify(account);
         }
 
         /**
@@ -122,26 +122,26 @@
          * @memberOf social.authentication.services.Authentication
          */
         function logout() {
-          return $http.post('/api/v1/auth/logout/')
-            .then(logoutSuccessFn, logoutErrorFn);
+            return $http.post('/api/v1/auth/logout/')
+                .then(logoutSuccessFn, logoutErrorFn);
 
-          /**
-           * @name logoutSuccessFn
-           * @desc Unauthenticate and redirect to index with page reload
-           */
-          function logoutSuccessFn(data, status, headers, config) {
-            Authentication.unauthenticate();
+            /**
+             * @name logoutSuccessFn
+             * @desc Unauthenticate and redirect to index with page reload
+             */
+            function logoutSuccessFn(data, status, headers, config) {
+                Authentication.unauthenticate();
 
-            window.location = '/';
-          }
+                window.location = '/';
+            }
 
-          /**
-           * @name logoutErrorFn
-           * @desc Log "Logout failure!" to the console
-           */
-          function logoutErrorFn(data, status, headers, config) {
-            console.error('Logout failure!');
-          }
+            /**
+             * @name logoutErrorFn
+             * @desc Log "Logout failure!" to the console
+             */
+            function logoutErrorFn(data, status, headers, config) {
+                console.error('Logout failure!');
+            }
         }
 
         /**

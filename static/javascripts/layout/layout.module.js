@@ -1,11 +1,11 @@
 (function () {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('social.layout', [
-      'social.layout.controllers'
-    ]);
+    angular
+        .module('social.layout', [
+            'social.layout.controllers'
+        ]);
 
-  angular
-    .module('social.layout.controllers', []);
+    angular
+        .module('social.layout.controllers', []);
 })();

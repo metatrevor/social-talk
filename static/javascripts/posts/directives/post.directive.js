@@ -3,29 +3,29 @@
  * @namespace social.posts.directives
  */
 (function () {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('social.posts.directives')
-    .directive('post', post);
+    angular
+        .module('social.posts.directives')
+        .directive('post', post);
 
-  /**
-   * @namespace Post
-   */
-  function post() {
     /**
-     * @name directive
-     * @desc The directive to be returned
-     * @memberOf social.posts.directives.Post
+     * @namespace Post
      */
-    var directive = {
-      restrict: 'E',
-      scope: {
-        post: '='
-      },
-      templateUrl: '/static/templates/posts/post.html'
-    };
+    function post() {
+        /**
+         * @name directive
+         * @desc The directive to be returned
+         * @memberOf social.posts.directives.Post
+         */
+        var directive = {
+            restrict: 'E',
+            scope: {
+                post: '='
+            },
+            templateUrl: '/static/templates/posts/post.html'
+        };
 
-    return directive;
-  }
+        return directive;
+    }
 })();

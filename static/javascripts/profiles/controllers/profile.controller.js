@@ -1,73 +1,73 @@
 /**
-* ProfileController
-* @namespace social.profiles.controllers
-*/
+ * ProfileController
+ * @namespace social.profiles.controllers
+ */
 (function () {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('social.profiles.controllers')
-    .controller('ProfileController', ProfileController);
+    angular
+        .module('social.profiles.controllers')
+        .controller('ProfileController', ProfileController);
 
-  ProfileController.$inject = ['$location', '$routeParams', 'Posts', 'Profile', 'Snackbar'];
-
-  /**
-  * @namespace ProfileController
-  */
-  function ProfileController($location, $routeParams, Posts, Profile, Snackbar) {
-    var vm = this;
-
-    vm.profile = undefined;
-    vm.posts = [];
-
-    activate();
+    ProfileController.$inject = ['$location', '$routeParams', 'Posts', 'Profile', 'Snackbar'];
 
     /**
-    * @name activate
-    * @desc Actions to be performed when this controller is instantiated
-    * @memberOf social.profiles.controllers.ProfileController
-    */
-    function activate() {
-      var username = $routeParams.username.substr(1);
+     * @namespace ProfileController
+     */
+    function ProfileController($location, $routeParams, Posts, Profile, Snackbar) {
+        var vm = this;
 
-      Profile.get(username).then(profileSuccessFn, profileErrorFn);
-      Posts.get(username).then(postsSuccessFn, postsErrorFn);
+        vm.profile = undefined;
+        vm.posts = [];
 
-      /**
-      * @name profileSuccessProfile
-      * @desc Update `profile` on viewmodel
-      */
-      function profileSuccessFn(data, status, headers, config) {
-        vm.profile = data.data;
-      }
+        activate();
 
+        /**
+         * @name activate
+         * @desc Actions to be performed when this controller is instantiated
+         * @memberOf social.profiles.controllers.ProfileController
+         */
+        function activate() {
+            var username = $routeParams.username.substr(1);
 
-      /**
-      * @name profileErrorFn
-      * @desc Redirect to index and show error Snackbar
-      */
-      function profileErrorFn(data, status, headers, config) {
-        $location.url('/');
-        Snackbar.error('That user does not exist.');
-      }
+            Profile.get(username).then(profileSuccessFn, profileErrorFn);
+            Posts.get(username).then(postsSuccessFn, postsErrorFn);
 
-
-      /**
-        * @name postsSucessFn
-        * @desc Update `posts` on viewmodel
-        */
-      function postsSuccessFn(data, status, headers, config) {
-        vm.posts = data.data;
-      }
+            /**
+             * @name profileSuccessProfile
+             * @desc Update `profile` on viewmodel
+             */
+            function profileSuccessFn(data, status, headers, config) {
+                vm.profile = data.data;
+            }
 
 
-      /**
-        * @name postsErrorFn
-        * @desc Show error snackbar
-        */
-      function postsErrorFn(data, status, headers, config) {
-        Snackbar.error(data.data.error);
-      }
+            /**
+             * @name profileErrorFn
+             * @desc Redirect to index and show error Snackbar
+             */
+            function profileErrorFn(data, status, headers, config) {
+                $location.url('/');
+                Snackbar.error('That user does not exist.');
+            }
+
+
+            /**
+             * @name postsSucessFn
+             * @desc Update `posts` on viewmodel
+             */
+            function postsSuccessFn(data, status, headers, config) {
+                vm.posts = data.data;
+            }
+
+
+            /**
+             * @name postsErrorFn
+             * @desc Show error snackbar
+             */
+            function postsErrorFn(data, status, headers, config) {
+                Snackbar.error(data.data.error);
+            }
+        }
     }
-  }
 })();

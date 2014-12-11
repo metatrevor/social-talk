@@ -28,9 +28,9 @@
             controllerAs: 'vm',
             templateUrl: '/static/templates/profiles/settings.html'
         }).when('/login', {
-                controller: 'LoginController',
-                controllerAs: 'vm',
-                templateUrl: '/static/templates/authentication/login.html'
-            }).otherwise('/');
+            controller: 'LoginController',
+            controllerAs: 'vm',
+            templateUrl: '/static/templates/authentication/login.html'
+        }).otherwise('/');
     }
 })();

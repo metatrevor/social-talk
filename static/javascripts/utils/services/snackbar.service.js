@@ -1,66 +1,66 @@
 /**
-* Snackbar
-* @namespace social.utils.services
-*/
+ * Snackbar
+ * @namespace social.utils.services
+ */
 (function ($, _) {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('social.utils.services')
-    .factory('Snackbar', Snackbar);
-
-  /**
-  * @namespace Snackbar
-  */
-  function Snackbar() {
-    /**
-    * @name Snackbar
-    * @desc The factory to be returned
-    */
-    var Snackbar = {
-      error: error,
-      show: show
-    };
-
-    return Snackbar;
-
-    ////////////////////
+    angular
+        .module('social.utils.services')
+        .factory('Snackbar', Snackbar);
 
     /**
-    * @name _snackbar
-    * @desc Display a snackbar
-    * @param {string} content The content of the snackbar
-    * @param {Object} options Options for displaying the snackbar
-    */
-    function _snackbar(content, options) {
-      options = _.extend({ timeout: 3000 }, options);
-      options.content = content;
+     * @namespace Snackbar
+     */
+    function Snackbar() {
+        /**
+         * @name Snackbar
+         * @desc The factory to be returned
+         */
+        var Snackbar = {
+            error: error,
+            show: show
+        };
 
-      $.snackbar(options);
+        return Snackbar;
+
+        ////////////////////
+
+        /**
+         * @name _snackbar
+         * @desc Display a snackbar
+         * @param {string} content The content of the snackbar
+         * @param {Object} options Options for displaying the snackbar
+         */
+        function _snackbar(content, options) {
+            options = _.extend({ timeout: 3000 }, options);
+            options.content = content;
+
+            $.snackbar(options);
+        }
+
+
+        /**
+         * @name error
+         * @desc Display an error snackbar
+         * @param {string} content The content of the snackbar
+         * @param {Object} options Options for displaying the snackbar
+         * @memberOf social.utils.services.Snackbar
+         */
+        function error(content, options) {
+            _snackbar('Error: ' + content, options);
+        }
+
+
+        /**
+         * @name show
+         * @desc Display a standard snackbar
+         * @param {string} content The content of the snackbar
+         * @param {Object} options Options for displaying the snackbar
+         * @memberOf social.utils.services.Snackbar
+         */
+        function show(content, options) {
+            _snackbar(content, options);
+        }
     }
-
-
-    /**
-    * @name error
-    * @desc Display an error snackbar
-    * @param {string} content The content of the snackbar
-    * @param {Object} options Options for displaying the snackbar
-    * @memberOf social.utils.services.Snackbar
-    */
-    function error(content, options) {
-      _snackbar('Error: ' + content, options);
-    }
-
-
-    /**
-    * @name show
-    * @desc Display a standard snackbar
-    * @param {string} content The content of the snackbar
-    * @param {Object} options Options for displaying the snackbar
-    * @memberOf social.utils.services.Snackbar
-    */
-    function show(content, options) {
-      _snackbar(content, options);
-    }
-  }
 })($, _);

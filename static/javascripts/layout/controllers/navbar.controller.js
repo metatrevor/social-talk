@@ -1,31 +1,31 @@
 /**
-* NavbarController
-* @namespace social.layout.controllers
-*/
+ * NavbarController
+ * @namespace social.layout.controllers
+ */
 (function () {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('social.layout.controllers')
-    .controller('NavbarController', NavbarController);
+    angular
+        .module('social.layout.controllers')
+        .controller('NavbarController', NavbarController);
 
-  NavbarController.$inject = ['$scope', 'Authentication'];
-
-  /**
-  * @namespace NavbarController
-  */
-  function NavbarController($scope, Authentication) {
-    var vm = this;
-
-    vm.logout = logout;
+    NavbarController.$inject = ['$scope', 'Authentication'];
 
     /**
-    * @name logout
-    * @desc Log the user out
-    * @memberOf social.layout.controllers.NavbarController
-    */
-    function logout() {
-      Authentication.logout();
+     * @namespace NavbarController
+     */
+    function NavbarController($scope, Authentication) {
+        var vm = this;
+
+        vm.logout = logout;
+
+        /**
+         * @name logout
+         * @desc Log the user out
+         * @memberOf social.layout.controllers.NavbarController
+         */
+        function logout() {
+            Authentication.logout();
+        }
     }
-  }
 })();
