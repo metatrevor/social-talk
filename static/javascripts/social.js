@@ -8,7 +8,8 @@
             'social.authentication',
             'social.layout',
             'social.posts',
-            'social.utils'
+            'social.utils',
+            'social.profiles'
         ]);
 
     angular
