@@ -25,12 +25,14 @@ class AccountViewSet(viewsets.ModelViewSet):
         serializer = self.serializer_class(data=request.data)
 
         if serializer.is_valid():
-            Account.objects.create_user(email=serializer.validated_data.get('email'), username=serializer.validated_data.get('username'), password=serializer.validated_data.get('password'))
+            Account.objects.create_user(email=serializer.validated_data.get('email'),
+                                        username=serializer.validated_data.get('username'),
+                                        password=serializer.validated_data.get('password'))
             return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
         return Response({
-            'status': 'Bad request',
-            'message': 'Account could not be created with received data.'
-        }, status=status.HTTP_400_BAD_REQUEST)
+                            'status': 'Bad request',
+                            'message': 'Account could not be created with received data.'
+                        }, status=status.HTTP_400_BAD_REQUEST)
 
 
 class LoginView(views.APIView):
@@ -51,14 +53,14 @@ class LoginView(views.APIView):
                 return Response(serialized.data)
             else:
                 return Response({
-                    'status' : 'Unauthorized',
-                    'message' : 'This account has been disabled.'
-                }, status=status.HTTP_401_UNAUTHORIZED)
+                                    'status': 'Unauthorized',
+                                    'message': 'This account has been disabled.'
+                                }, status=status.HTTP_401_UNAUTHORIZED)
         else:
             return Response({
-                'status' : 'Unauthorized',
-                'message' : 'Username/password invalid'
-            }, status=status.HTTP_401_UNAUTHORIZED)
+                                'status': 'Unauthorized',
+                                'message': 'Username/password invalid'
+                            }, status=status.HTTP_401_UNAUTHORIZED)
 
 
 class LogoutView(views.APIView):

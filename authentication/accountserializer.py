@@ -14,7 +14,8 @@ class AccountSerializer(serializers.ModelSerializer):
         read_only_fields = ('date_joined', 'updated_at')
 
     def create(self, validated_data):
-        return Account.objects.create(email=validated_data.get('email'), username=validated_data.get('username'), password=validated_data.get('password'))
+        return Account.objects.create(email=validated_data.get('email'), username=validated_data.get('username'),
+                                      password=validated_data.get('password'))
 
     def update(self, instance, validated_data):
         instance.username = validated_data.get('username', instance.username)
