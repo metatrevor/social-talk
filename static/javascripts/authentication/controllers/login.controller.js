@@ -3,7 +3,7 @@
  * @namespace social.authentication.controllers
  */
 (function () {
-    'use static';
+    'use strict';
 
     angular
         .module('social.authentication.controllers')
@@ -19,7 +19,7 @@
 
         vm.login = login;
 
-        activate();
+
 
         /**
          * @name activate
