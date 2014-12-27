@@ -2,7 +2,7 @@
 Social-Talk
 ===========
 
-Yet another social network clone developed with python django and angular js
+Yet another social network developed with python django and angular js
 
 
 * `$ mkvirtualenv social-talk-env`
